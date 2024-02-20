@@ -12,7 +12,7 @@ int main(void)
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 
-	nbr = n % 10;
+	n = n % 10;
 
 	if (n > 5)
 		printf("%d is greater than 5\n", n);
