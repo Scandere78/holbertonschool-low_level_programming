@@ -7,7 +7,7 @@
 */
 int main(void)
 {
-	int n, nbr;
+	int n,
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
@@ -21,7 +21,7 @@ int main(void)
 		printf(" is 0 and is 0\n");
 
 	else if (n < 6)
-		printf("nbr and is less than 6 and not 0\n");
+		printf("n and is less than 6 and not 0\n");
 
 	return (0);
 }
