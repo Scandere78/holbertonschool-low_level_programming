@@ -7,12 +7,12 @@
 */
 int main(void)
 {
-	int n, lastdigit;
+	int n, nbr;
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 
-	lastdigit = n % 10;
+	nbr = n % 10;
 
 	if (n > 5)
 		printf("%d is greater than 5\n", n);
@@ -21,7 +21,7 @@ int main(void)
 		printf(" is 0 and is 0\n");
 
 	else if (n < 6)
-		printf("lastdigit and is less than 6 and not 0\n");
+		printf("nbr and is less than 6 and not 0\n");
 
 	return (0);
 }
