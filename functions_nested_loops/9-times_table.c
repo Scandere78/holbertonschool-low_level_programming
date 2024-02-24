@@ -2,12 +2,10 @@
 #include "main.h"
 
 /**
-  * print_times_table - Prints a multiplication table up to param
-  * @n: The number to be treated
+  * print_times_table - Prints a multiplication
   *
   * Return: Number matrix
   */
-
 void times_table(void)
 {
 	int a;
@@ -22,25 +20,26 @@ void times_table(void)
 
 			if (b < 10)
 			{
-				if(a != 0)
+				if (a != 0)
 				{
 					_putchar(' ');
 				}
 
 				_putchar((b % 10) + '0');
-				
-				} else {
+
+				} else
+				{
 				_putchar((b / 10) + '0');
 				_putchar((b % 10) + '0');
-			}
+				}
 			if (a != 9)
 			{
 
 			_putchar(',');
-                        _putchar(32);
+			_putchar(32);
 			}
 		}
 		_putchar('\n');
 	}
-	
+
 }
