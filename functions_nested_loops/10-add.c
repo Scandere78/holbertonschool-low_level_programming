@@ -2,16 +2,18 @@
 #include <stdio.h>
 
 /**
- * main - check the code
+ * add - Adds two integers and returns the result
+ * @a : parameter 1
+ * @b : parameter 2
  *
- * Return: Always 0.
+ * Return: int
  */
-int add(int a , int b)
+int add(int a, int b)
 {
 	int result;
 
-	result = a +b;
-		return result;
+	result = a + b;
+		return (result);
 }
 
 

@@ -2,10 +2,11 @@
 #include "main.h"
 
 /**
-  * print_times_table - Prints a multiplication
+  * print_times_table - Prints a 9 times table
   *
-  * Return: Number matrix
+  * Return: void
   */
+
 void times_table(void)
 {
 	int a;
