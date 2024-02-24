@@ -5,7 +5,6 @@
  *
  * Return: Always 0
  */
-
 void print_to_98(int n)
 {
     int i;
@@ -16,18 +15,23 @@ void print_to_98(int n)
             if(i<0){
                 _putchar('-');
                 temp = -i;
-                if(temp>9){
-                    _putchar(temp / 10 + '0');
-                    _putchar(temp % 10 + '0');
+                if (temp>99){
+                    _putchar('c');
+                    _putchar('d');
+                    _putchar('u');
+                }
+                else if(temp>9){
+                    _putchar((temp/10)+'0');
+                    _putchar((temp%10)+'0');
                 } else {
-                    _putchar(temp % 10 + '0');
-                }    
+                    _putchar((temp%10)+'0');
+                }
             }
-            if(i>9){
+            else if(i>9){
                 _putchar((i/10)+'0');
                 _putchar((i%10)+'0');
-            } else if (i >= 0){
-                _putchar(i % 10 + '0');
+            } else if (i>= 0){
+                _putchar((i%10)+'0');
             }
             if(i != 98) {
                 _putchar(',');
@@ -36,7 +40,7 @@ void print_to_98(int n)
         }
         _putchar('\n');
     } else {
-       for(i=n; i > 97; i--)
+        for(i=n; i > 97; i--)
         {
             if (i>99) {
                 _putchar((i/100)+'0');
