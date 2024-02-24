@@ -6,13 +6,12 @@
  *
  * Return: Always 0.
  */
-int add(int, int)
+int add(int a , int b)
 {
-	int a;
-	int b;
+	int result;
 
-	n= a + b
-		retrun (0);
+	result = a +b;
+		return result;
 }
 
 
