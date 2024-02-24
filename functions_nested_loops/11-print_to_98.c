@@ -5,6 +5,7 @@
  *
  * Return: Always 0
  */
+
 void print_to_98(int n)
 {
     int i;
@@ -16,9 +17,9 @@ void print_to_98(int n)
                 _putchar('-');
                 temp = -i;
                 if (temp>99){
-                    _putchar('c');
-                    _putchar('d');
-                    _putchar('u');
+                    _putchar((temp/100)+'0');
+                    _putchar(((temp/10)%10)+'0');
+                    _putchar((temp%10)+'0');
                 }
                 else if(temp>9){
                     _putchar((temp/10)+'0');
