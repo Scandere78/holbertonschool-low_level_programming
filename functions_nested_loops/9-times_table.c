@@ -21,14 +21,19 @@ void times_table(void)
 			b = a * c;
 			
 			if ( b < 10) {
+				if(a!=0){
+					_putchar(' ');
+				}
 				_putchar((b % 10) + '0');
-			
-			} else {
+				
+				} else {
 				_putchar((b / 10) + '0');
 				_putchar((b % 10) + '0');
 			}
+			if (a !=9){
 			_putchar(',');
-			_putchar(' ');
+                        _putchar(32);
+			}
 		}
 		_putchar('\n');
 	}
