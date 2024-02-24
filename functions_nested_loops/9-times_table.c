@@ -19,18 +19,22 @@ void times_table(void)
 		for (a = 0 ; a < 10 ; a++)
 		{
 			b = a * c;
-			
-			if ( b < 10) {
-				if(a!=0){
+
+			if (b < 10)
+			{
+				if(a != 0)
+				{
 					_putchar(' ');
 				}
+
 				_putchar((b % 10) + '0');
 				
 				} else {
 				_putchar((b / 10) + '0');
 				_putchar((b % 10) + '0');
 			}
-			if (a != 9){
+			if (a != 9)
+			{
 
 			_putchar(',');
                         _putchar(32);
