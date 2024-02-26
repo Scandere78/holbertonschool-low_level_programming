@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * _isdigit - checks for lowercase character
+ * _isdigit - 
  *@c: parameter to be checked
  * Return: 1 or 0
  */
-int _islower(int c)
+int _isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
