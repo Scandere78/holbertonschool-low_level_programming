@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _isdigit - 
+ * _isdigit -
  *@c: parameter to be checked
  * Return: 1 or 0
  */
