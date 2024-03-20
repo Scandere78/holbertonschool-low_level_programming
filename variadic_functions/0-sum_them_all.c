@@ -10,11 +10,11 @@
  */
 int sum_them_all(const unsigned int n, ...)
 {
-	va_list listes;
+	va_list args;
 	int resultat = 0;
 	unsigned int i;
 
-	va_start(listes, n);
+	va_start(args, n);
 
 	if ( n == 0)
 	{
@@ -23,7 +23,7 @@ int sum_them_all(const unsigned int n, ...)
 	
 	for (i = 0; i < n; i++);
 	{
-		resultat += va_arg(listes, int);
+		resultat += va_arg(args, int);
 	}
 
 	va_end(list);
