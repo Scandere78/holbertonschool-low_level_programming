@@ -3,103 +3,78 @@
 #include <stdio.h>
 
 /**
- * struct print_format - Struct for print formats
- * @letter: The format specifier
- * @func: The function pointer corresponding to the specifier
+ * print_character - Print a char
+ * @args: List args
  */
-
-typedef struct print_format
-{
-	char letter;
-	void (*func)(va_list);
-} print_format_t;
-
-/**
- * print_char - Print a character
- * @args: The argument list
- */
-
-void print_char(va_list args)
+void print_character(va_list args)
 {
 	printf("%c", va_arg(args, int));
 }
 
 /**
- * print_integer - Print an integer
- * @args: The argument list
+ * print_integer - Print a int
+ * @args: List args
  */
-
 void print_integer(va_list args)
 {
-	printf("%d", va_arg(args, int));
+	printf("%i", va_arg(args, int));
 }
 
 /**
  * print_float - Print a float
- * @args: The argument list
+ * @args: List args
  */
-
 void print_float(va_list args)
 {
 	printf("%f", va_arg(args, double));
 }
 
 /**
- * print_string - Print a string
- * @args: The argument list
+ * print_string - Print a char *
+ * @args: List args
  */
-
 void print_string(va_list args)
 {
 	char *str = va_arg(args, char *);
+
 	if (str == NULL)
-	{
-		printf("(nil)");
-	return;
-	}
-		printf("%s", str);
+		str = "(nil)";
+	printf("%s", str);
 }
 
 /**
  * print_all - Print anything
- * @format: List of types of arguments passed to the function
+ * @format: Format of arguments to print
  */
-
 void print_all(const char * const format, ...)
 {
+	int i = 0, ii = 0;
 	va_list args;
-	int i = 0, ii;
-	char *sep = "";
-
-	print_format_t types[] = 
-	{
-		{'c', print_char},
+	print_t types[] = {
+		{'c', print_character},
 		{'i', print_integer},
 		{'f', print_float},
-		{'s', print_string},
-		{'\0', NULL}
+		{'s', print_string}
 	};
+	char *separator = "";
 
 	va_start(args, format);
-
-	while (format && format[i])
+	while (format != NULL && format[i])
 	{
 		ii = 0;
-		while (types[ii].letter != '\0')
+		while (ii < 4)
 		{
 			if (format[i] == types[ii].letter)
 			{
-				printf("%s", sep);
-				types[ii].func(args);
-				sep = ", ";
-					
-				break;
+				printf("%s", separator);
+				types[ii].f(args);
+				separator = ", ";
 			}
 			ii++;
 		}
 		i++;
 	}
-
 	printf("\n");
 	va_end(args);
 }
+
