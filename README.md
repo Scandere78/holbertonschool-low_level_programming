@@ -1,1 +1,1 @@
-GCC
+ bit manipulation 
