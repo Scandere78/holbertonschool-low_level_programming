@@ -1,22 +1,21 @@
-#include "holberton.h"
+#include "main.h"
 
+/* Not understand task!! */
 /**
- * flip_bits - Counts the number of bits needed to be
- *             flipped to get from one number to another.
- * @n: The number.
- * @m: The number to flip n to.
- *
- * Return: The necessary number of bits to flip to get from n to m.
+ * flip_bits - Return number of bits need to flip to get one number to another
+ * @n: Number
+ * @m: M
+ * Return: Number of bits
  */
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	unsigned long int xor = n ^ m, bits = 0;
+	unsigned long int xor_r = n ^ m;
+	unsigned int count = 0;
 
-	while (xor > 0)
+	while (xor_r)
 	{
-		bits += (xor & 1);
-		xor >>= 1;
+		count += xor_r & 1;
+		xor_r >>= 1;
 	}
-
-	return (bits);
+	return (count);
 }
