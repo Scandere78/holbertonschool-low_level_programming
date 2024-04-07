@@ -1,70 +1,76 @@
 #include "main.h"
+#include <stdio.h>
+
 /**
- * fileError - function qui verifie si file error
- * @file_from: depart
- * @file_to: destination
- * @argv: list arg
- * Return: vide
- */
-void fileError(int file_from, int file_to, char *argv[])
-{
-	if (file_from == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
-	}
-	if (file_to == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		exit(99);
-	}
-}
-/**
- * main - check the code
- * @argc: argc
- * @argv: argv
- * Return: Always 0.
+ * main - Start program
+ * @argc: Number of arguments
+ * @argv: List of arguments
+ * Return: result
  */
 int main(int argc, char *argv[])
 {
-	int file_from, file_to, re;
-	ssize_t i, wr;
-	char buf[1024];
+	int fd_from, fd_to;
+	char *filename_from;
+	char *filename_to;
+	char buffer[1024];
+	ssize_t bytes, bytes_w;
 
 	if (argc != 3)
-	{
-		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-		exit(97);
-	}
-	file_from = open(argv[1], O_RDONLY);
-	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-	fileError(file_from, file_to, argv);
+		_error(97, "");
 
-	i = 1024;
-	while (i == 1024)
+	filename_from = argv[1];
+	filename_to = argv[2];
+	fd_from = open(filename_from, O_RDONLY);
+
+	if (fd_from == -1)
+		_error(98, filename_from);
+	fd_to = open(filename_to, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+	if (fd_to == -1)
+		_error(99, filename_to);
+
+	bytes = 1;
+	while (bytes)
 	{
-		i = read(file_from, buf, 1024);
-		if (i == -1)
+		bytes = read(fd_from, buffer, 1024);
+		if (bytes == -1)
+			_error(98, filename_from);
+		if (bytes > 0)
 		{
-			fileError(-1, 0, argv);
-		}
-		wr = write(file_to, buf, i);
-		if (wr == -1)
-		{
-			fileError(0, -1, argv);
+			bytes_w = write(fd_to, buffer, bytes);
+			if (bytes_w == -1 || bytes_w != bytes)
+				_error(99, filename_to);
 		}
 	}
-	re = close(file_from);
-	if (re == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
-		exit(100);
-	}
-	re = close(file_to);
-	if (re == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
-		exit(100);
-	}
+	close_file(fd_from);
+	close_file(fd_to);
 	return (0);
+}
+
+/**
+ * _error - Exit error
+ * @status: Code
+ * @v: Value 1
+ */
+void _error(int status, char *v)
+{
+	if (status == 97)
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+	else if (status == 98)
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", v);
+	else if (status == 99)
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", v);
+	exit(status);
+}
+
+/**
+ * close_file - Close file
+ * @fd: File open
+ */
+void close_file(int fd)
+{
+	if (close(fd) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+		exit(100);
+	}
 }
